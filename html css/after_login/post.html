@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>投稿</title>
+</head>
+<body>
+    <form name="upload-form" action="http://localhost/Web/php/complete.php" method="post" enctype="multipart/form-data">
+        <!-- アップロード上限サイズは2MB(1024 * 1024 * 2 = 2097152) -->
+        <input type="hidden" name="max_file_size" value="2097152">
+        <p>
+            ●アップロード画像を選択<br>
+            <input type="file" name="image1"><br><br>
+            ●タグを入力<br>
+            <textarea name="tag" rows="3" cols="30">(例：#数学 #入試)※"#"は半角を使用してください</textarea><br><br>
+            <button type="submit" name="operation" value="upload">投稿</button><br><br>
+        </p>
+    </form>
+    <button onclick="location.href='../../php/my_page.php'">ホームに戻る</button>
+</body>
+</html>

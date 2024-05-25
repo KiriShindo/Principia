@@ -1,0 +1,46 @@
+.body {
+    margin: 0;
+    padding: 0;
+}
+
+.background_header{
+    
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100vw;
+    height: 300px;
+        
+    background: linear-gradient(to bottom, rgb(74, 2, 133) 50%, hsl(246, 83%, 37%) 100%);
+    opacity: 0.5;
+    animation: huerotator 10s infinite alternate;
+}
+      
+@keyframes huerotator {
+    0% {
+        -webkit-filter: hue-rotate(500deg);
+        filter: hue-rotate(500deg);
+        }
+      
+        100% {
+          -webkit-filter: hue-rotate(200deg);
+          filter: hue-rotate(200deg);
+        }
+      
+}
+
+/* 起動時白画面から表示させるアニメーション
+
+.wrap {
+    animation: fadein 5s forwards;
+  }
+  
+  @keyframes fadein {
+    0% {opacity: 0}
+    50% {opacity: 1}
+    100% {opacity: 2}
+  }
+  
+*/
+

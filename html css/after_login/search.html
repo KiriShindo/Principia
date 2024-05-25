@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>検索</title>
+</head>
+<body>
+  <h3>タグを検索</h3>
+  <form name="and-form" action="http://localhost/Web/php/search.php" method="GET">
+    <input type="text" name="tag" value="">
+    <button type="submit" name="operation" value="search">検索</button><br><br>
+  </form>
+  <h4>タグをAND検索したいとき</h4>
+  <p>例：「英語」と「入試」というタグを検索する場合　　→　　英語_入試<br>
+    ※記号"_"は半角を使用してください。
+  </p><br><br>
+  <button onclick="location.href='../../php/my_page.php'">ホームに戻る</button>
+</body>
+</html>

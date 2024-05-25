@@ -1,0 +1,13 @@
+footer {
+    position: absolute;
+    margin-top: 1080px;
+    width: 100vw;
+    height: 120px; 
+    text-align: center;
+    background-color: black;
+    z-index: 15;
+    left: 0;
+}
+.footer-text {
+    color: white;
+}

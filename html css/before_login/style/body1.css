@@ -1,0 +1,73 @@
+.background2{
+    position: absolute;
+    top: 300px;
+    left: 0;
+    z-index: 1;
+    width: 100vw;
+    height: 800px;
+    background: linear-gradient(193deg, #345e87, #3ebfa3, #004ca5, #004ca5, #06346b, #24364b, #008e63);
+    background-size: 1400% 1400%;
+    -webkit-animation: AnimationName 58s ease infinite;
+    -moz-animation: AnimationName 58s ease infinite;
+    -o-animation: AnimationName 58s ease infinite;
+    animation: AnimationName 58s ease infinite;
+}
+@-webkit-keyframes AnimationName {
+    0%{background-position:43% 0%}
+    50%{background-position:58% 100%}
+    100%{background-position:43% 0%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:43% 0%}
+    50%{background-position:58% 100%}
+    100%{background-position:43% 0%}
+}
+@-o-keyframes AnimationName {
+    0%{background-position:43% 0%}
+    50%{background-position:58% 100%}
+    100%{background-position:43% 0%}
+}
+@keyframes AnimationName {
+    0%{background-position:43% 0%}
+    50%{background-position:58% 100%}
+    100%{background-position:43% 0%}
+}
+
+.AA{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h2{
+    position:  static;
+    color: white;
+    font-size: 50px;
+    margin-top: 10px;
+
+
+
+}
+
+.A1{
+    position:  static;
+    background-color: white;
+    margin-top: 100px;
+    margin-right:10px;
+    width:300px;
+    height: 500px;
+
+}
+
+.A2{
+    
+    background-color: white;
+    margin-top: 100px;
+    margin-right:100px;
+    width:300px;
+    height: 500px;
+    color: #008e63;
+    
+
+
+}
