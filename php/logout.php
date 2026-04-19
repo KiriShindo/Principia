@@ -6,7 +6,7 @@ session_start();
 
 require_once 'classes/UserLogic.php';
 
-if (!$logout = filter_input(INPUT_POST, 'logout'))
+if (!isset($_POST['logout']))
 {
   exit('不正なリクエストです');
 }

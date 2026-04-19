@@ -57,6 +57,7 @@ $login_user = $_SESSION['login_user'];
           font-family: 'Inter', sans-serif;
           background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
           min-height: 100vh;
+          overflow-x: hidden;
       }
       .background_header {
           background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -133,6 +134,7 @@ $login_user = $_SESSION['login_user'];
           transition: left 0.3s ease;
           z-index: 999;
           padding: 5rem 1rem 2rem;
+          box-sizing: border-box;
       }
       #menu-btn-check:checked ~ .menu-content {
           left: 0;
