@@ -22,31 +22,134 @@ session_destroy();
 <head>
    <meta charset="utf-8">
    <title>ログイン画面</title>
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+   <style>
+       body {
+           margin: 0;
+           padding: 0;
+           font-family: 'Inter', sans-serif;
+           background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+           min-height: 100vh;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+       }
+       .container {
+           background: white;
+           border-radius: 12px;
+           padding: 2rem;
+           box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+           max-width: 400px;
+           width: 100%;
+           margin: 2rem;
+       }
+       h2 {
+           text-align: center;
+           color: #2c3e50;
+           margin-bottom: 1.5rem;
+           font-weight: 700;
+       }
+       .error {
+           color: #e74c3c;
+           text-align: center;
+           margin-bottom: 1rem;
+           padding: 0.5rem;
+           background: #fdf2f2;
+           border-radius: 4px;
+       }
+       form {
+           display: flex;
+           flex-direction: column;
+       }
+       label {
+           margin-bottom: 0.5rem;
+           color: #555;
+           font-weight: 500;
+       }
+       input[type="email"],
+       input[type="password"] {
+           padding: 0.75rem;
+           border: 2px solid #e1e8ed;
+           border-radius: 8px;
+           font-size: 1rem;
+           margin-bottom: 1rem;
+           transition: border-color 0.3s ease;
+       }
+       input[type="email"]:focus,
+       input[type="password"]:focus {
+           outline: none;
+           border-color: #667eea;
+           box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+       }
+       button[type="submit"] {
+           background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+           color: white;
+           border: none;
+           padding: 0.75rem;
+           border-radius: 8px;
+           font-size: 1rem;
+           font-weight: 600;
+           cursor: pointer;
+           transition: transform 0.2s ease;
+           margin-top: 1rem;
+       }
+       button[type="submit"]:hover {
+           transform: translateY(-2px);
+           box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+       }
+       .links {
+           text-align: center;
+           margin-top: 1.5rem;
+       }
+       .links a {
+           color: #667eea;
+           text-decoration: none;
+           font-weight: 500;
+       }
+       .links a:hover {
+           text-decoration: underline;
+       }
+       .home-btn {
+           display: inline-block;
+           margin-top: 1rem;
+           padding: 0.5rem 1rem;
+           background: #f8f9fa;
+           color: #6c757d;
+           text-decoration: none;
+           border-radius: 6px;
+           transition: background-color 0.3s ease;
+       }
+       .home-btn:hover {
+           background: #e9ecef;
+       }
+   </style>
 </head>
 <body>
-  <h2>ログインフォーム</h2>
-  <?php if (isset($err['msg'])):?>
-    <p><?php echo $err['msg']; ?></p>
-  <?php endif; ?>
-  <form name="login_form" action="http://localhost:8000/php/login.php" method="POST">
-    <p>
-      <label for="email">メールアドレス:</label>
-      <input type="email" name="email">
+  <div class="container">
+    <h2>ログイン</h2>
+    <?php if (isset($err['msg'])):?>
+      <div class="error"><?php echo $err['msg']; ?></div>
+    <?php endif; ?>
+    <form name="login_form" action="http://localhost:8000/php/login.php" method="POST">
+      <label for="email">メールアドレス</label>
+      <input type="email" name="email" required>
       <?php if (isset($err['email'])):?>
-        <p><?php echo $err['email']; ?></p>
+        <div class="error"><?php echo $err['email']; ?></div>
       <?php endif; ?>
-    </p>
-    <p>
-      <label for="password">パスワード:</label>
-      <input type="password" name="password">
+
+      <label for="password">パスワード</label>
+      <input type="password" name="password" required>
       <?php if (isset($err['password'])):?>
-        <p><?php echo $err['password']; ?></p>
+        <div class="error"><?php echo $err['password']; ?></div>
       <?php endif; ?>
-    </p>
-    <button type="submit" name="operation" value="register">ログイン</button>
-  </form>
-  <br>
-  <a href="signup_form.php">新規登録はこちら</a><br><br>
-  <button onclick="location.href='../html_css/before_login/index.html'">ホームに戻る</button>
+
+      <button type="submit" name="operation" value="register">ログイン</button>
+    </form>
+    <div class="links">
+      <a href="signup_form.php">新規登録はこちら</a><br>
+      <a href="../html_css/before_login/index.html" class="home-btn">ホームに戻る</a>
+    </div>
+  </div>
+</body>
 </body>
 </html>
