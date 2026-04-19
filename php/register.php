@@ -52,15 +52,81 @@ if (count($err) === 0) {
 <head>
   <meta charset="utf-8">
   <title>ユーザー登録完了</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+      body {
+          margin: 0;
+          padding: 0;
+          font-family: 'Inter', sans-serif;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+      }
+      .container {
+          background: white;
+          padding: 2rem;
+          border-radius: 12px;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+          max-width: 400px;
+          width: 100%;
+          text-align: center;
+      }
+      h2 {
+          color: #333;
+          margin-bottom: 1.5rem;
+          font-weight: 600;
+      }
+      .success-message {
+          color: #28a745;
+          font-size: 1.2rem;
+          margin-bottom: 2rem;
+          font-weight: 500;
+      }
+      .error-message {
+          color: #dc3545;
+          margin-bottom: 1rem;
+          padding: 0.5rem;
+          background: #f8d7da;
+          border-radius: 4px;
+      }
+      .btn {
+          display: inline-block;
+          padding: 0.75rem 1.5rem;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          color: white;
+          text-decoration: none;
+          border-radius: 8px;
+          font-weight: 500;
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+          margin: 0.5rem;
+      }
+      .btn:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+      }
+      .btn-secondary {
+          background: #6c757d;
+      }
+      .btn-secondary:hover {
+          box-shadow: 0 5px 15px rgba(108, 117, 125, 0.4);
+      }
+  </style>
 </head>
 <body>
-  <?php if (count($err) > 0) : ?>
-    <?php foreach($err as $e) : ?>
-      <p><?php echo $e ?></p>
-    <?php endforeach ?>
-  <?php else: ?>
-    <p>ユーザ登録が完了しました。</p>
-  <?php endif ?>
-  <a href="signup_form.php">戻る</a>
+  <div class="container">
+    <h2>ユーザー登録</h2>
+    <?php if (count($err) > 0) : ?>
+      <?php foreach($err as $e) : ?>
+        <div class="error-message"><?php echo $e ?></div>
+      <?php endforeach ?>
+      <a href="signup_form.php" class="btn btn-secondary">戻る</a>
+    <?php else: ?>
+      <div class="success-message">ユーザ登録が完了しました。</div>
+      <a href="login_form.php" class="btn">ログインする</a>
+      <a href="../html_css/before_login/index.html" class="btn btn-secondary">ホームに戻る</a>
+    <?php endif ?>
+  </div>
 </body>
 </html>
