@@ -58,96 +58,104 @@ $login_user = $_SESSION['login_user'];
           background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
           min-height: 100vh;
       }
-      .header {
-          background: rgba(255, 255, 255, 0.95);
-          backdrop-filter: blur(10px);
-          padding: 1rem 2rem;
-          box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          position: sticky;
-          top: 0;
+      .background_header {
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          padding: 2rem 1rem;
+          text-align: center;
+          color: white;
+          position: relative;
+      }
+      .background_header h1 {
+          font: bold 3rem 'Inter', sans-serif;
+          margin: 0;
+          text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+          animation: fadeInUp 1s ease-out;
+      }
+      .hamburger-menu {
+          position: fixed;
+          top: 20px;
+          left: 20px;
           z-index: 1000;
       }
-      .logo-area {
-          font-size: 1.5rem;
-          font-weight: 600;
-          color: #333;
-      }
       .menu-btn {
-          background: none;
+          display: flex;
+          height: 60px;
+          width: 60px;
+          justify-content: center;
+          align-items: center;
+          background: rgba(255, 255, 255, 0.9);
+          border-radius: 50%;
+          box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+          transition: all 0.3s ease;
+          backdrop-filter: blur(10px);
           border: none;
-          font-size: 1.5rem;
           cursor: pointer;
-          color: #667eea;
-          padding: 0.5rem;
-          border-radius: 8px;
-          transition: background 0.3s ease;
       }
       .menu-btn:hover {
-          background: rgba(102, 126, 234, 0.1);
+          transform: scale(1.05);
       }
-      .sidebar {
+      .menu-btn span,
+      .menu-btn span:before,
+      .menu-btn span:after {
+          content: '';
+          display: block;
+          height: 3px;
+          width: 25px;
+          border-radius: 3px;
+          background-color: #667eea;
+          position: absolute;
+      }
+      .menu-btn span:before {
+          bottom: 8px;
+      }
+      .menu-btn span:after {
+          top: 8px;
+      }
+      #menu-btn-check:checked ~ .menu-btn span {
+          background-color: rgba(255, 255, 255, 0);
+      }
+      #menu-btn-check:checked ~ .menu-btn span::before {
+          bottom: 0;
+          transform: rotate(45deg);
+      }
+      #menu-btn-check:checked ~ .menu-btn span::after {
+          top: 0;
+          transform: rotate(-45deg);
+      }
+      .menu-content {
           position: fixed;
           top: 0;
-          right: -300px;
+          left: -300px;
           width: 300px;
           height: 100vh;
           background: white;
-          box-shadow: -2px 0 20px rgba(0, 0, 0, 0.1);
-          transition: right 0.3s ease;
-          z-index: 1001;
-          padding: 2rem 1rem;
+          box-shadow: 2px 0 20px rgba(0, 0, 0, 0.1);
+          transition: left 0.3s ease;
+          z-index: 999;
+          padding: 5rem 1rem 2rem;
       }
-      .sidebar.open {
-          right: 0;
-      }
-      .sidebar-overlay {
-          position: fixed;
-          top: 0;
+      #menu-btn-check:checked ~ .menu-content {
           left: 0;
-          width: 100%;
-          height: 100%;
-          background: rgba(0, 0, 0, 0.5);
-          opacity: 0;
-          visibility: hidden;
-          transition: opacity 0.3s ease, visibility 0.3s ease;
-          z-index: 1000;
       }
-      .sidebar-overlay.open {
-          opacity: 1;
-          visibility: visible;
-      }
-      .sidebar h3 {
-          color: #333;
-          margin-bottom: 2rem;
-          font-weight: 600;
-      }
-      .sidebar ul {
+      .menu-content ul {
           list-style: none;
           padding: 0;
       }
-      .sidebar li {
+      .menu-content li {
           margin-bottom: 1rem;
       }
-      .sidebar a {
+      .menu-content a {
           color: #555;
           text-decoration: none;
           font-weight: 500;
-          display: flex;
-          align-items: center;
+          display: block;
           padding: 0.75rem 1rem;
           border-radius: 8px;
           transition: background 0.3s ease, color 0.3s ease;
       }
-      .sidebar a:hover {
+      .menu-content a:hover {
           background: #f8f9fa;
           color: #667eea;
-      }
-      .sidebar a i {
-          margin-right: 0.75rem;
-          width: 20px;
       }
       .logout-btn {
           background: #dc3545;
@@ -224,27 +232,38 @@ $login_user = $_SESSION['login_user'];
           text-decoration: none;
           font-weight: 500;
       }
+      @keyframes fadeInUp {
+          from {
+              opacity: 0;
+              transform: translateY(30px);
+          }
+          to {
+              opacity: 1;
+              transform: translateY(0);
+          }
+      }
   </style>
 </head>
 <body>
-  <header class="header">
-    <div class="logo-area"><?php echo h($login_user['name']) ?>のマイページ</div>
-    <button class="menu-btn" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
-  </header>
+  <div class="background_header">
+    <h1><?php echo h($login_user['name']) ?>のマイページ</h1>
+  </div>
 
-  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
-  <div class="sidebar" id="sidebar">
-    <h3>メニュー</h3>
-    <ul>
-      <li><a href="../html_css/after_login/search.html"><i class="fas fa-search"></i>検索</a></li>
-      <li><a href="create.php"><i class="fas fa-plus"></i>作成</a></li>
-      <li><a href="my_post.php"><i class="fas fa-history"></i>投稿履歴</a></li>
-      <li><a href="../html_css/after_login/use.html"><i class="fas fa-question-circle"></i>使い方</a></li>
-      <li><a href="../html_css/after_login/notice.html"><i class="fas fa-bell"></i>お知らせ</a></li>
-    </ul>
-    <form action="logout.php" method="POST">
-      <button type="submit" name="logout" class="logout-btn"><i class="fas fa-sign-out-alt"></i> ログアウト</button>
-    </form>
+  <div class="hamburger-menu">
+    <input type="checkbox" id="menu-btn-check">
+    <label for="menu-btn-check" class="menu-btn"><span></span></label>
+    <div class="menu-content">
+      <ul>
+        <li><a href="../html_css/after_login/search.html"><i class="fas fa-search"></i>検索</a></li>
+        <li><a href="create.php"><i class="fas fa-plus"></i>作成</a></li>
+        <li><a href="my_post.php"><i class="fas fa-history"></i>投稿履歴</a></li>
+        <li><a href="../html_css/after_login/use.html"><i class="fas fa-question-circle"></i>使い方</a></li>
+        <li><a href="../html_css/after_login/notice.html"><i class="fas fa-bell"></i>お知らせ</a></li>
+      </ul>
+      <form action="logout.php" method="POST">
+        <button type="submit" name="logout" class="logout-btn"><i class="fas fa-sign-out-alt"></i> ログアウト</button>
+      </form>
+    </div>
   </div>
 
   <div class="main-content">
@@ -278,12 +297,7 @@ $login_user = $_SESSION['login_user'];
   </div>
 
   <script>
-      function toggleSidebar() {
-          const sidebar = document.getElementById('sidebar');
-          const overlay = document.getElementById('sidebarOverlay');
-          sidebar.classList.toggle('open');
-          overlay.classList.toggle('open');
-      }
+      // Optional: Add any additional JavaScript if needed
   </script>
 </body>
 </html>

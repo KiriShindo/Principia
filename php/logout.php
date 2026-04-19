@@ -21,17 +21,6 @@ if (!$result) {
 // ログアウトする
 UserLogic::logout();
 
-?>
-
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>ログアウト</title>
-</head>
-<body>
-  <h2>ログアウト完了</h2>
-  <p>ログアウトしました</p>
-  <a href="login_form.php">ログイン画面へ</a>
-</body>
-</html>
+// ログアウトしたらログイン画面へリダイレクト
+header('Location: login_form.php');
+return;
