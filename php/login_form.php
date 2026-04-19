@@ -66,8 +66,7 @@ session_destroy();
            color: #555;
            font-weight: 500;
        }
-       input[type="email"],
-       input[type="password"] {
+       input[type="email"] {
            padding: 0.75rem;
            border: 2px solid #e1e8ed;
            border-radius: 8px;
@@ -75,11 +74,39 @@ session_destroy();
            margin-bottom: 1rem;
            transition: border-color 0.3s ease;
        }
+       .password-container {
+           position: relative;
+           margin-bottom: 1rem;
+       }
+       .password-container input {
+           width: 100%;
+           padding: 0.75rem;
+           padding-right: 3rem;
+           border: 2px solid #e1e8ed;
+           border-radius: 8px;
+           font-size: 1rem;
+           transition: border-color 0.3s ease;
+       }
        input[type="email"]:focus,
-       input[type="password"]:focus {
+       .password-container input:focus {
            outline: none;
            border-color: #667eea;
            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+       }
+       .password-container button {
+           position: absolute;
+           right: 0.5rem;
+           top: 50%;
+           transform: translateY(-50%);
+           background: none;
+           border: none;
+           cursor: pointer;
+           font-size: 1.2rem;
+           color: #666;
+           padding: 0.25rem;
+       }
+       .password-container button:hover {
+           color: #333;
        }
        button[type="submit"] {
            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -123,6 +150,18 @@ session_destroy();
            background: #e9ecef;
        }
    </style>
+   <script>
+       function togglePassword(inputId, button) {
+           const input = document.getElementById(inputId);
+           if (input.type === 'password') {
+               input.type = 'text';
+               button.textContent = '🙈';
+           } else {
+               input.type = 'password';
+               button.textContent = '👁️';
+           }
+       }
+   </script>
 </head>
 <body>
   <div class="container">
@@ -138,7 +177,10 @@ session_destroy();
       <?php endif; ?>
 
       <label for="password">パスワード</label>
-      <input type="password" name="password" required>
+      <div class="password-container">
+        <input type="password" id="password" name="password" required>
+        <button type="button" onclick="togglePassword('password', this)">👁️</button>
+      </div>
       <?php if (isset($err['password'])):?>
         <div class="error"><?php echo $err['password']; ?></div>
       <?php endif; ?>

@@ -67,8 +67,7 @@ unset($_SESSION['login_err']);
            font-weight: 500;
        }
        input[type="text"],
-       input[type="email"],
-       input[type="password"] {
+       input[type="email"] {
            padding: 0.75rem;
            border: 2px solid #e1e8ed;
            border-radius: 8px;
@@ -76,12 +75,38 @@ unset($_SESSION['login_err']);
            margin-bottom: 1rem;
            transition: border-color 0.3s ease;
        }
-       input[type="text"]:focus,
-       input[type="email"]:focus,
-       input[type="password"]:focus {
+       .password-container {
+           position: relative;
+           margin-bottom: 1rem;
+       }
+       .password-container input {
+           width: 100%;
+           padding: 0.75rem;
+           padding-right: 3rem;
+           border: 2px solid #e1e8ed;
+           border-radius: 8px;
+           font-size: 1rem;
+           transition: border-color 0.3s ease;
+       }
+       .password-container input:focus {
            outline: none;
            border-color: #667eea;
            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+       }
+       .password-container button {
+           position: absolute;
+           right: 0.5rem;
+           top: 50%;
+           transform: translateY(-50%);
+           background: none;
+           border: none;
+           cursor: pointer;
+           font-size: 1.2rem;
+           color: #666;
+           padding: 0.25rem;
+       }
+       .password-container button:hover {
+           color: #333;
        }
        input[type="submit"] {
            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -125,6 +150,18 @@ unset($_SESSION['login_err']);
            background: #e9ecef;
        }
    </style>
+   <script>
+       function togglePassword(inputId, button) {
+           const input = document.getElementById(inputId);
+           if (input.type === 'password') {
+               input.type = 'text';
+               button.textContent = '🙈';
+           } else {
+               input.type = 'password';
+               button.textContent = '👁️';
+           }
+       }
+   </script>
 </head>
 <body>
   <div class="container">
@@ -140,10 +177,16 @@ unset($_SESSION['login_err']);
       <input type="email" name="email" required>
 
       <label for="password">パスワード</label>
-      <input type="password" name="password" required>
+      <div class="password-container">
+        <input type="password" id="password" name="password" required>
+        <button type="button" onclick="togglePassword('password', this)">👁️</button>
+      </div>
 
       <label for="password_conf">パスワード確認</label>
-      <input type="password" name="password_conf" required>
+      <div class="password-container">
+        <input type="password" id="password_conf" name="password_conf" required>
+        <button type="button" onclick="togglePassword('password_conf', this)">👁️</button>
+      </div>
 
       <input type="hidden" name="csrf_token" value="<?php echo h(setToken()); ?>">
       <input type="submit" value="新規登録">
