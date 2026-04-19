@@ -1,16 +1,22 @@
 .menu-btn {
     position: fixed;
-    top: 10px;
-    left: 10px;
+    top: 20px;
+    left: 20px;
     display: flex;
     height: 60px;
     width: 60px;
     justify-content: center;
     align-items: center;
     z-index: 90;
-    background-color:  linear-gradient(to bottom, rgb(74, 2, 133) 50%, #2010ad 100%);
-    opacity: 0.5;
-    animation: huerotator 10s infinite alternate;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.menu-btn:hover {
+    transform: scale(1.05);
 }
 .menu-btn span,
 .menu-btn span:before,
@@ -52,14 +58,16 @@ ss
 }
 
 .menu-content {
-    width: 25%;
-    height: 100%;
+    width: 300px;
+    height: 100vh;
     position: fixed;
     top: 0;
-    right: 100%;/*leftの値を変更してメニューを画面外へ*/    
+    left: -300px;
     z-index: 80;
-    background-color:rgba(3, 238, 255, 0.316) ;/*ここの色*/
-    transition:  all 0.5s;/*アニメーション設定*/
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    transition: all 0.3s ease;
+    box-shadow: 4px 0 20px rgba(0,0,0,0.1);
 }
 .menu-content ul {
     padding: 70px 10px 0;
@@ -71,25 +79,35 @@ ss
 .menu-content ul li a {
     display: block;
     width: 100%;
-    font-size: 15px;
+    font-size: 16px;
+    font-weight: 500;
     box-sizing: border-box;
-    color:#ffffff;
+    color: #2c3e50;
     text-decoration: none;
-    padding: 9px 15px 10px 0;
+    padding: 15px 30px;
     position: relative;
+    transition: all 0.3s ease;
+}
+
+.menu-content ul li a:hover {
+    background: rgba(102, 126, 234, 0.1);
+    padding-left: 40px;
 }
 .menu-content ul li a::before {
-    content: "";
-    width: 7px;
-    height: 7px;
-    border-top: solid 2px #ffffff;
-    border-right: solid 2px #ffffff;
-    transform: rotate(45deg);
+    content: "→";
     position: absolute;
-    right: 11px;
-    top: 16px;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+
+.menu-content ul li a:hover::before {
+    opacity: 1;
+    right: 15px;
 }
 
 #menu-btn-check:checked ~ .menu-content {
-    right: 75%;/*メニューを画面内へ*/
+    left: 0;
 }

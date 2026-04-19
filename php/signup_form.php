@@ -28,7 +28,7 @@ unset($_SESSION['login_err']);
   <?php if (isset($login_err)):?>
     <p><?php echo $login_err; ?></p>
   <?php endif; ?>
-  <form name="register_form" action="http://localhost/Web/php/register.php" method="POST">
+  <form name="register_form" action="http://localhost:8000/php/register.php" method="POST">
     <p>
       <label for="username">ユーザ名:</label>
       <input type="text" name="username">
@@ -50,7 +50,7 @@ unset($_SESSION['login_err']);
       <input type="submit" value="新規登録"><br><br>
     </p>
   </form>
-  <button onclick="location.href='../html css/before_login/index.html'">ホームに戻る</button><br><br>
+  <button onclick="location.href='../html_css/before_login/index.html'">ホームに戻る</button><br><br>
   <a href="login_form.php">ログインする</a>
 </body>
 </html>

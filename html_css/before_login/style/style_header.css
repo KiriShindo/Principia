@@ -1,0 +1,33 @@
+
+header.page-header {
+    text-align: center;
+    color: white;
+    z-index: 2;
+}
+
+header.page-header > h1 {
+    font: bold 3rem 'Inter', sans-serif;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    animation: fadeInUp 1s ease-out;
+}
+
+.sentence1 {
+    color: white;
+    text-align: center;
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    animation: fadeInUp 1s ease-out 0.5s both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+  

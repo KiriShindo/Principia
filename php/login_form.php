@@ -28,7 +28,7 @@ session_destroy();
   <?php if (isset($err['msg'])):?>
     <p><?php echo $err['msg']; ?></p>
   <?php endif; ?>
-  <form name="login_form" action="http://localhost/Web/php/login.php" method="POST">
+  <form name="login_form" action="http://localhost:8000/php/login.php" method="POST">
     <p>
       <label for="email">メールアドレス:</label>
       <input type="email" name="email">
@@ -47,6 +47,6 @@ session_destroy();
   </form>
   <br>
   <a href="signup_form.php">新規登録はこちら</a><br><br>
-  <button onclick="location.href='../html css/before_login/index.html'">ホームに戻る</button>
+  <button onclick="location.href='../html_css/before_login/index.html'">ホームに戻る</button>
 </body>
 </html>
