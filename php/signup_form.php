@@ -88,6 +88,7 @@ unset($_SESSION['login_err']);
            border: 2px solid #e1e8ed;
            border-radius: 8px;
            font-size: 1rem;
+           box-sizing: border-box;
            transition: border-color 0.3s ease;
        }
        .password-container input:focus {
