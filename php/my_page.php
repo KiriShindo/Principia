@@ -59,11 +59,11 @@ $login_user = $_SESSION['login_user'];
       <label class="nav-unshown" id="nav-close" for="nav-input"></label>
       <div id="nav-content">
         <ul>
-        <li><a href="../html css/after_login/search.html">検索</a></li>
+        <li><a href="../html_css/after_login/search.html">検索</a></li>
         <li><a href="create.php">作成</a></li>
         <li><a href="my_post.php">投稿履歴</a></li>
-        <li><a href="../html css/after_login/use.html">使い方</a></li>
-        <li><a href="../html css/after_login/notice.html">お知らせ</a></li><br><br><br>
+        <li><a href="../html_css/after_login/use.html">使い方</a></li>
+        <li><a href="../html_css/after_login/notice.html">お知らせ</a></li><br><br><br>
         <form action="logout.php" method="POST">
           <input type="submit" name="logout" value="ログアウト">
         </form>
