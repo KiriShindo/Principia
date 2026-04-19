@@ -36,17 +36,6 @@ if(!$result) {
   return;
 }
 
-?>
-<!-- 自動遷移させる !-->
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>ログイン完了</title>
-</head>
-<body>
-  <h2>ログイン完了</h2>
-  <p>ログインしました。</p>
-  <a href="my_page.php">マイページへ</a>
-</body>
-</html>
+// ログイン成功したらマイページへリダイレクト
+header('Location: my_page.php');
+return;
