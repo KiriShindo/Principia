@@ -23,6 +23,7 @@ session_destroy();
    <meta charset="utf-8">
    <title>ログイン画面</title>
    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
    <style>
        body {
            margin: 0;
@@ -81,6 +82,7 @@ session_destroy();
        .password-container input {
            width: 100%;
            padding: 0.75rem;
+           padding-left: 3rem;
            padding-right: 3rem;
            border: 2px solid #e1e8ed;
            border-radius: 8px;
@@ -95,7 +97,7 @@ session_destroy();
        }
        .password-container button {
            position: absolute;
-           right: 0.5rem;
+           left: 0.5rem;
            top: 50%;
            transform: translateY(-50%);
            background: none;
@@ -153,12 +155,13 @@ session_destroy();
    <script>
        function togglePassword(inputId, button) {
            const input = document.getElementById(inputId);
+           const icon = button.querySelector('i');
            if (input.type === 'password') {
                input.type = 'text';
-               button.textContent = '🙈';
+               icon.className = 'fas fa-eye-slash';
            } else {
                input.type = 'password';
-               button.textContent = '👁️';
+               icon.className = 'fas fa-eye';
            }
        }
    </script>
@@ -179,7 +182,7 @@ session_destroy();
       <label for="password">パスワード</label>
       <div class="password-container">
         <input type="password" id="password" name="password" required>
-        <button type="button" onclick="togglePassword('password', this)">👁️</button>
+        <button type="button" onclick="togglePassword('password', this)"><i class="fas fa-eye"></i></button>
       </div>
       <?php if (isset($err['password'])):?>
         <div class="error"><?php echo $err['password']; ?></div>
