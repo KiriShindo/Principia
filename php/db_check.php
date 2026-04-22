@@ -18,16 +18,17 @@ try {
     // usersテーブルの内容を表示
     if (in_array('users', $tables)) {
         echo "<h3>usersテーブル内容</h3>";
-        $stmt = $pdo->query("SELECT id, name, email FROM users");
+        $stmt = $pdo->query("SELECT id, name, email, password FROM users");
         $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
         if (count($users) > 0) {
             echo "<table border='1'>";
-            echo "<tr><th>ID</th><th>名前</th><th>メールアドレス</th></tr>";
+            echo "<tr><th>ID</th><th>名前</th><th>メールアドレス</th><th>パスワードハッシュ</th></tr>";
             foreach ($users as $user) {
                 echo "<tr>";
                 echo "<td>{$user['id']}</td>";
                 echo "<td>{$user['name']}</td>";
                 echo "<td>{$user['email']}</td>";
+                echo "<td>{$user['password']}</td>";
                 echo "</tr>";
             }
             echo "</table>";

@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 session_start();
 
 require_once 'classes/UserLogic.php';
@@ -12,7 +12,7 @@ if($result) {
 
 $err = $_SESSION;
 
-// セッション消去
+// 繧ｻ繝・す繝ｧ繝ｳ豸亥悉
 $_SESSION = array();
 session_destroy();
  ?>
@@ -21,7 +21,7 @@ session_destroy();
 <html>
 <head>
    <meta charset="utf-8">
-   <title>ログイン画面</title>
+   <title>繝ｭ繧ｰ繧､繝ｳ逕ｻ髱｢</title>
    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
    <style>
@@ -169,18 +169,18 @@ session_destroy();
 </head>
 <body>
   <div class="container">
-    <h2>ログイン</h2>
+    <h2>繝ｭ繧ｰ繧､繝ｳ</h2>
     <?php if (isset($err['msg'])):?>
       <div class="error"><?php echo $err['msg']; ?></div>
     <?php endif; ?>
     <form name="login_form" action="http://localhost:8000/php/login.php" method="POST">
-      <label for="email">メールアドレス</label>
+      <label for="email">繝｡繝ｼ繝ｫ繧｢繝峨Ξ繧ｹ</label>
       <input type="email" name="email" required>
       <?php if (isset($err['email'])):?>
         <div class="error"><?php echo $err['email']; ?></div>
       <?php endif; ?>
 
-      <label for="password">パスワード</label>
+      <label for="password">繝代せ繝ｯ繝ｼ繝・/label>
       <div class="password-container">
         <input type="password" id="password" name="password" required>
         <button type="button" onclick="togglePassword('password', this)"><i class="fas fa-eye"></i></button>
@@ -189,11 +189,12 @@ session_destroy();
         <div class="error"><?php echo $err['password']; ?></div>
       <?php endif; ?>
 
-      <button type="submit" name="operation" value="register">ログイン</button>
+      <button type="submit" name="operation" value="register">繝ｭ繧ｰ繧､繝ｳ</button>
     </form>
     <div class="links">
-      <a href="signup_form.php">新規登録はこちら</a><br>
-      <a href="../html_css/before_login/index.html" class="home-btn">ホームに戻る</a>
+      <a href="password_reset_request.php">繝代せ繝ｯ繝ｼ繝峨ｒ蠢倥ｌ縺滓婿</a><br>
+      <a href="signup_form.php">譁ｰ隕冗匳骭ｲ縺ｯ縺薙■繧・/a><br>
+      <a href="../html_css/before_login/index.html" class="home-btn">繝帙・繝縺ｫ謌ｻ繧・/a>
     </div>
   </div>
 </body>
