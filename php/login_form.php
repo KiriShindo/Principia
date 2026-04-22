@@ -12,7 +12,7 @@ if($result) {
 
 $err = $_SESSION;
 
-// 繧ｻ繝・す繝ｧ繝ｳ豸亥悉
+// セッション消去
 $_SESSION = array();
 session_destroy();
  ?>
@@ -21,7 +21,7 @@ session_destroy();
 <html>
 <head>
    <meta charset="utf-8">
-   <title>繝ｭ繧ｰ繧､繝ｳ逕ｻ髱｢</title>
+   <title>ログイン画面</title>
    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
    <style>
@@ -34,6 +34,112 @@ session_destroy();
            display: flex;
            align-items: center;
            justify-content: center;
+           overflow-x: hidden;
+       }
+       .background_header {
+           background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+           padding: 2rem 1rem;
+           text-align: center;
+           color: white;
+           position: relative;
+       }
+       .background_header h1 {
+           font: bold 3rem 'Inter', sans-serif;
+           margin: 0;
+           text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+           animation: fadeInUp 1s ease-out;
+       }
+       .hamburger-menu {
+           position: fixed;
+           top: 20px;
+           left: 20px;
+           z-index: 1000;
+       }
+       .menu-btn {
+           display: flex;
+           height: 60px;
+           width: 60px;
+           justify-content: center;
+           align-items: center;
+           background: rgba(255, 255, 255, 0.9);
+           border-radius: 50%;
+           box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+           transition: all 0.3s ease;
+           backdrop-filter: blur(10px);
+           border: none;
+           cursor: pointer;
+       }
+       .menu-btn:hover {
+           transform: scale(1.05);
+       }
+       .menu-btn span,
+       .menu-btn span:before,
+       .menu-btn span:after {
+           content: '';
+           display: block;
+           height: 3px;
+           width: 25px;
+           border-radius: 3px;
+           background-color: #667eea;
+           position: absolute;
+       }
+       .menu-btn span:before {
+           bottom: 8px;
+       }
+       .menu-btn span:after {
+           top: 8px;
+       }
+       #menu-btn-check:checked ~ .menu-btn span {
+           background-color: rgba(255, 255, 255, 0);
+       }
+       #menu-btn-check:checked ~ .menu-btn span::before {
+           bottom: 0;
+           transform: rotate(45deg);
+       }
+       #menu-btn-check:checked ~ .menu-btn span::after {
+           top: 0;
+           transform: rotate(-45deg);
+       }
+       .menu-content {
+           position: fixed;
+           top: 0;
+           left: -300px;
+           width: 300px;
+           height: 100vh;
+           background: white;
+           box-shadow: 2px 0 20px rgba(0, 0, 0, 0.1);
+           transition: left 0.3s ease;
+           z-index: 999;
+           padding: 5rem 1rem 2rem;
+           box-sizing: border-box;
+       }
+       #menu-btn-check:checked ~ .menu-content {
+           left: 0;
+       }
+       .menu-content ul {
+           list-style: none;
+           padding: 0;
+       }
+       .menu-content li {
+           margin-bottom: 1rem;
+       }
+       .menu-content a {
+           color: #555;
+           text-decoration: none;
+           font-weight: 500;
+           display: block;
+           padding: 0.75rem 1rem;
+           border-radius: 8px;
+           transition: background 0.3s ease, color 0.3s ease;
+       }
+       .menu-content a:hover {
+           background: #f8f9fa;
+           color: #667eea;
+       }
+       .main-content {
+           padding: 2rem;
+           max-width: 1200px;
+           margin: 0 auto;
        }
        .container {
            background: white;
@@ -135,6 +241,8 @@ session_destroy();
            color: #667eea;
            text-decoration: none;
            font-weight: 500;
+           display: block;
+           margin-bottom: 0.5rem;
        }
        .links a:hover {
            text-decoration: underline;
@@ -151,6 +259,16 @@ session_destroy();
        }
        .home-btn:hover {
            background: #e9ecef;
+       }
+       @keyframes fadeInUp {
+           from {
+               opacity: 0;
+               transform: translateY(30px);
+           }
+           to {
+               opacity: 1;
+               transform: translateY(0);
+           }
        }
    </style>
    <script>
@@ -169,18 +287,15 @@ session_destroy();
 </head>
 <body>
   <div class="container">
-    <h2>繝ｭ繧ｰ繧､繝ｳ</h2>
-    <?php if (isset($err['msg'])):?>
-      <div class="error"><?php echo $err['msg']; ?></div>
-    <?php endif; ?>
+    <h2>ログイン</h2>
     <form name="login_form" action="http://localhost:8000/php/login.php" method="POST">
-      <label for="email">繝｡繝ｼ繝ｫ繧｢繝峨Ξ繧ｹ</label>
+      <label for="email">メールアドレス</label>
       <input type="email" name="email" required>
       <?php if (isset($err['email'])):?>
         <div class="error"><?php echo $err['email']; ?></div>
       <?php endif; ?>
 
-      <label for="password">繝代せ繝ｯ繝ｼ繝・/label>
+      <label for="password">パスワード</label>
       <div class="password-container">
         <input type="password" id="password" name="password" required>
         <button type="button" onclick="togglePassword('password', this)"><i class="fas fa-eye"></i></button>
@@ -189,14 +304,13 @@ session_destroy();
         <div class="error"><?php echo $err['password']; ?></div>
       <?php endif; ?>
 
-      <button type="submit" name="operation" value="register">繝ｭ繧ｰ繧､繝ｳ</button>
+      <button type="submit" name="operation" value="register">ログイン</button>
     </form>
     <div class="links">
-      <a href="password_reset_request.php">繝代せ繝ｯ繝ｼ繝峨ｒ蠢倥ｌ縺滓婿</a><br>
-      <a href="signup_form.php">譁ｰ隕冗匳骭ｲ縺ｯ縺薙■繧・/a><br>
-      <a href="../html_css/before_login/index.html" class="home-btn">繝帙・繝縺ｫ謌ｻ繧・/a>
+      <a href="password_reset_request.php">パスワードを忘れた方</a>
+      <a href="signup_form.php">新規登録はこちら</a>
+      <a href="../html_css/before_login/index.html" class="home-btn">ホームに戻る</a>
     </div>
   </div>
-</body>
 </body>
 </html>
