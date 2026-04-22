@@ -1,0 +1,6 @@
+@echo off
+echo Starting MySQL Server...
+start " "C:\Program Files\MySQL\MySQL Server 8.4\bin\mysqld.exe" --console --datadir="C:\MySQLData"
+timeout /t 5 /nobreak > nul
+echo Starting PHP Server...
+php -S localhost:8000
